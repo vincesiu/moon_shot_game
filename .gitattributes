@@ -1,0 +1,2 @@
+# Given all files that are detected as text, convert everything to crlf
+* text eol=crlf
