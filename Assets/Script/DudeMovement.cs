@@ -39,7 +39,7 @@ public class DudeMovement : MonoBehaviour {
             animator.SetFloat("Vertical", change.y);
             animator.SetFloat("Speed", change.sqrMagnitude);
         } else {
-            Debug.Log("THE VELOCITY IS: " + myRigidBody.velocity);
+            //Debug.Log("THE VELOCITY IS: " + myRigidBody.velocity);
             //animator.SetFloat("Horizontal", 0);
             //animator.SetFloat("Vertical", 0);
             animator.SetFloat("Speed", 0);
