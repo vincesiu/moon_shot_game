@@ -5,27 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class BackgroundManager : MonoBehaviour
 {
-    bool PauseScreenLoaded = false;
-    // Start is called before the first frame update
+    /*
+     * 
+     * Documentation on AsyncOperation 
+     * https://docs.unity3d.com/ScriptReference/AsyncOperation.html
+     *
+     * 
+     */
+
+    // vince: I want this eventually to be Unloaded, Loading, and Loaded. For now, this works, will fix later.
+    enum PauseOverlayStatus
+    {
+        NotLoading,
+        Loading,
+    }
+
+    PauseOverlayStatus pauseOverlayStatus;
+
+
     void Start()
     {
-        
+        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseOverlayStatus == PauseOverlayStatus.Unloaded)
         {
-            if (!PauseScreenLoaded)
-            {
-                Debug.Log("Escape pressed");
-                StartCoroutine(LoadScene("PauseOverlay"));
-            }
+            Debug.Log("Starting to async load pause overlay");
+            StartCoroutine(LoadPauseScene());
+            pauseOverlayStatus = PauseOverlayStatus.Loading;
         }
     }
 
-    IEnumerator LoadScene(string name)
+    IEnumerator LoadPauseScene()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync("PauseOverlay", LoadSceneMode.Additive);
 
@@ -34,6 +48,6 @@ public class BackgroundManager : MonoBehaviour
             yield return null;
         }
 
-        PauseScreenLoaded = true;
+        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
     }
 }
