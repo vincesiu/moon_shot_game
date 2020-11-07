@@ -27,14 +27,19 @@ public class EnemyKite : MonoBehaviour {
             Kite();
         }
         
-        UnityEngine.Debug.Log(Vector2.Distance(transform.position, target.position));
+        //UnityEngine.Debug.Log(Vector2.Distance(transform.position, target.position));
 
-        if (Vector2.Distance(transform.position, target.position) <= stopDistance) {
-           // float xPos = Random.Range(-2.0f)
-            //float yPos
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+Random.Range(-1.5f,1.5f), transform.position.y+Random.Range(-1.5f,1.5f))/*Vector2(RandomNumberGenerator(-2,2), RandomNumberGenerator(-2, 2))*/, speed * Time.deltaTime);
-            UnityEngine.Debug.Log("inside if statement");
+        if (Vector2.Distance(transform.position, target.position) < stopDistance) {
 
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+Random.Range(-10.5f,10.5f), transform.position.y+Random.Range(-10.5f,10.5f)), speed * Time.deltaTime);
+            UnityEngine.Debug.Log("inside shake if");
+
+        }
+
+        if (Vector2.Distance(transform.position, target.position) < stopDistance-2) {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - stopDistance, transform.position.y - stopDistance), speed * Time.deltaTime);
+            Kite();
+            UnityEngine.Debug.Log("inside retreat if");
         }
 
     }
