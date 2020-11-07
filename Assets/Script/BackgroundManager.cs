@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BackgroundManager : MonoBehaviour
 {
+    bool PauseScreenLoaded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,23 @@ public class BackgroundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Escape pressed");
-            SceneManager.LoadSceneAsync("PauseOverlay", LoadSceneMode.Additive);
+            if (!PauseScreenLoaded)
+            {
+                Debug.Log("Escape pressed");
+                StartCoroutine(LoadScene("PauseOverlay"));
+            }
         }
+    }
+
+    IEnumerator LoadScene(string name)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("PauseOverlay", LoadSceneMode.Additive);
+
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+
+        PauseScreenLoaded = true;
     }
 }
