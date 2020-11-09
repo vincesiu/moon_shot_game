@@ -30,6 +30,7 @@ public class DudeMovement : MonoBehaviour {
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
+        change = Vector3.Normalize(change);
         //Debug.Log(change);
 
         if (change != Vector3.zero && (myRigidBody.velocity == Vector2.zero)) {
