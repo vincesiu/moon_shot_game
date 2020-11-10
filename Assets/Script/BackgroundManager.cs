@@ -31,12 +31,14 @@ public class BackgroundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Escape) && pauseOverlayStatus == PauseOverlayStatus.NotLoading)
         {
             Debug.Log("Starting to async load pause overlay");
             StartCoroutine(LoadPauseScene());
             pauseOverlayStatus = PauseOverlayStatus.Loading;
         }
+        */
     }
 
     IEnumerator LoadPauseScene()

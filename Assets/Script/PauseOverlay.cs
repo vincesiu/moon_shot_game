@@ -1,25 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseOverlay : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject pauseOverlay;
+
     void Start()
     {
-        
+        pauseOverlay.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseOverlay.activeSelf)
         {
-            Debug.Log("meow");
+            Debug.Log("Starting to async load pause overlay");
+            pauseOverlay.SetActive(true);
         }
-        */
     }
 
     public void ClickButtonExit()
@@ -31,11 +31,6 @@ public class PauseOverlay : MonoBehaviour
     public void ClickButtonReturn()
     {
         Debug.Log("Return button clicked from the Pause Overlay");
-        Unload();
-    }
-
-    void Unload()
-    {
-        SceneManager.UnloadSceneAsync("PauseOverlay");
+        pauseOverlay.SetActive(false);
     }
 }
