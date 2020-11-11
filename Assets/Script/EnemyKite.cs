@@ -12,33 +12,51 @@ public class EnemyKite : MonoBehaviour {
 
     public float stopDistance;
 
+    public float retreatDistance;
+
+    public float shotIntervals;
+
+    public float startTimeShots;
+
+    public GameObject projectile;
+
+    public float shakeInterval;
+
+    public float startShakeTime;
+
     WaitForSecondsRealtime waitForSecondsRealtime;
 
     // Start is called before the first frame update
     void Start() {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
+        shotIntervals = startTimeShots;
+
+        shakeInterval = startShakeTime;
+
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+        // runs towards enemy until enemy reaches stopping distance
         if (Vector2.Distance(transform.position, target.position) > stopDistance) {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             Kite();
         }
         
         //UnityEngine.Debug.Log(Vector2.Distance(transform.position, target.position));
+        // if enemy is in stopping distance, enemy will shake
+        else if (Vector2.Distance(transform.position, target.position) < stopDistance+5) {
 
-        if (Vector2.Distance(transform.position, target.position) < stopDistance) {
-
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+Random.Range(-10.5f,10.5f), transform.position.y+Random.Range(-10.5f,10.5f)), speed * Time.deltaTime);
+            Shake();
+            Attack();
             UnityEngine.Debug.Log("inside shake if");
 
         }
-
-        if (Vector2.Distance(transform.position, target.position) < stopDistance-2) {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - stopDistance, transform.position.y - stopDistance), speed * Time.deltaTime);
-            Kite();
+        // if player closes the gap between enemy, enemy will retreat
+        if (Vector2.Distance(transform.position, target.position) < retreatDistance) {
+            transform.position = Vector2.MoveTowards(transform.position, target.position/*new Vector2(transform.position.x - stopDistance, transform.position.y - stopDistance)*/, -speed * Time.deltaTime);
+           
             UnityEngine.Debug.Log("inside retreat if");
         }
 
@@ -48,6 +66,29 @@ public class EnemyKite : MonoBehaviour {
     IEnumerator Kite() {
         yield return new WaitForSeconds(300);
 
+    }
+
+    void Attack() {
+        if (shotIntervals <= 0) {
+            Instantiate(projectile, transform.position, Quaternion.identity);
+            shotIntervals = startTimeShots;
+        }
+        else {
+            shotIntervals -= Time.deltaTime;
+        }
+
+
+    }
+
+    void Shake() {
+        if (shakeInterval <= 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + Random.Range(-10.5f, 10.5f), transform.position.y + Random.Range(-10.5f, 10.5f)), speed * Time.deltaTime);
+            shakeInterval = startShakeTime;
+        }
+        else {
+            shakeInterval -= Time.deltaTime;
+        }
     }
 
 }

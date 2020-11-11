@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title.unity
+    path: Assets/Scenes/Screens/Title.unity
     guid: d56e55f517c4b0347a28edd9b83d6861
   - enabled: 1
     path: Assets/Scenes/dude testing.unity
@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/first.unity
     guid: 999ff63a6994f7a4ab03a1d02f7b9a0d
-  - enabled: 1
-    path: Assets/Scenes/PauseOverlay.unity
-    guid: 38950b62b2d676a46804b2986918a5d9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
