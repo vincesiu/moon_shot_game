@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseOverlay : MonoBehaviour
 {
@@ -28,9 +29,15 @@ public class PauseOverlay : MonoBehaviour
         Application.Quit();
     }
 
-    public void ClickButtonReturn()
+    public void ClickButtonReturnToGame()
     {
-        Debug.Log("Return button clicked from the Pause Overlay");
+        Debug.Log("Return to game button clicked from the Pause Overlay");
         pauseOverlay.SetActive(false);
+    }
+
+    public void ClickButtonReturnToMenu()
+    {
+        Debug.Log("Return to menu button clicked from the Pause Overlay");
+        SceneManager.LoadScene("Title");
     }
 }

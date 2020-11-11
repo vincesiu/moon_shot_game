@@ -13,19 +13,10 @@ public class BackgroundManager : MonoBehaviour
      * 
      */
 
-    // vince: I want this eventually to be Unloaded, Loading, and Loaded. For now, this works, will fix later.
-    enum PauseOverlayStatus
-    {
-        NotLoading,
-        Loading,
-    }
-
-    PauseOverlayStatus pauseOverlayStatus;
-
 
     void Start()
     {
-        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
+
     }
 
     // Update is called once per frame
@@ -41,15 +32,14 @@ public class BackgroundManager : MonoBehaviour
         */
     }
 
-    IEnumerator LoadPauseScene()
+    IEnumerator LoadGameOverScene()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("PauseOverlay", LoadSceneMode.Additive);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Single);
 
         while (!operation.isDone)
         {
             yield return null;
         }
-
-        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
+        
     }
 }
