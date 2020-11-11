@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dash : MonoBehaviour {
     private DashState state = DashState.Ready;
     private float dashTime;
-    public float dashDistance = 5f;
+    //public float dashDistance = 5f;
     private Rigidbody2D myRigidBody;
 
     public float dashSpeed;
@@ -38,25 +38,25 @@ public class Dash : MonoBehaviour {
                     //Debug.Log("the key is pressed: " + myRigidBody.velocity);
                     if (keyPressed) {
                         //keep updating the veloctiy of the dude
-                        if (Input.GetKey(KeyCode.LeftArrow)) {
-                            myRigidBody.velocity = Vector2.left * dashSpeed;
-
+                        if (Input.GetKey(KeyCode.A)) {
+                            //myRigidBody.velocity = Vector2.left * dashSpeed;
+                            myRigidBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + Vector2.left * dashSpeed * Time.deltaTime);
                             Debug.Log("the key is pressed: left");
                             Debug.Log("the key is pressed: " + myRigidBody.velocity);
 
-                        } else if (Input.GetKey(KeyCode.RightArrow)) {
+                        } else if (Input.GetKey(KeyCode.D)) {
                             myRigidBody.velocity = Vector2.right * dashSpeed;
 
                             Debug.Log("the key is pressed: right");
                             Debug.Log("the key is pressed: " + myRigidBody.velocity);
 
-                        } else if (Input.GetKey(KeyCode.UpArrow)) {
+                        } else if (Input.GetKey(KeyCode.W)) {
                             myRigidBody.velocity = Vector2.up * dashSpeed;
 
                             Debug.Log("the key is pressed: up");
                             Debug.Log("the key is pressed: " + myRigidBody.velocity);
 
-                        } else if (Input.GetKey(KeyCode.DownArrow)) {
+                        } else if (Input.GetKey(KeyCode.S)) {
                             //myRigidBody.velocity = new Vector3(myRigidBody.velocity.x * 10f, myRigidBody.velocity.y * 10f);
                             myRigidBody.velocity = Vector2.down * dashSpeed;
 
