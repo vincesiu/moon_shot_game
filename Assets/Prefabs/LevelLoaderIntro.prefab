@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9352821ab581712409baf824f7557935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLoaderIntroHandle: {fileID: 6416455470993762894}
 --- !u!1 &6416455470993762894
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +102,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &6416455470993762893
 MonoBehaviour:
