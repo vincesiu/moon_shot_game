@@ -234,3 +234,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff26f9aa9ef89c41a04b86381ffb5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoaderOutroCanvasHandle: {fileID: 4026131170019026206}
+  levelLoaderOutroAnimator: {fileID: 4026131169380088337}

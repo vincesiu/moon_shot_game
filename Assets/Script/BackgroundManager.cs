@@ -13,23 +13,15 @@ public class BackgroundManager : MonoBehaviour
      * 
      */
 
+    public GameObject levelLoaderIntroObject;
+    // public BoundsInt bounds = new BoundsInt(new Vector3Int(0,0,0), sizeof: new Vector3Int(100,100,0);
 
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseOverlayStatus == PauseOverlayStatus.NotLoading)
-        {
-            Debug.Log("Starting to async load pause overlay");
-            StartCoroutine(LoadPauseScene());
-            pauseOverlayStatus = PauseOverlayStatus.Loading;
-        }
-        */
+        // Will probably need to kick off a coroutine that turns on controls after the intro duration
+        LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
+        int intro_duration = levelLoaderIntroScriptHandle.Run();
+        
     }
 
     IEnumerator LoadGameOverScene()

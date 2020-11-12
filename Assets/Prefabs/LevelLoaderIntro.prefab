@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6416455470523100827}
   - component: {fileID: 6416455470523100824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LevelLoaderIntro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9352821ab581712409baf824f7557935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoaderIntroCanvasHandle: {fileID: 6416455470993762894}
+  levelLoaderIntroAnimator: {fileID: 6416455471424113317}
 --- !u!1 &6416455470993762894
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +58,7 @@ GameObject:
   - component: {fileID: 6416455470993762898}
   - component: {fileID: 6416455470993762893}
   - component: {fileID: 6416455470993762892}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +157,7 @@ GameObject:
   - component: {fileID: 6416455471424113323}
   - component: {fileID: 6416455471424113322}
   - component: {fileID: 6416455471424113317}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: LevelLoaderIntroImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
