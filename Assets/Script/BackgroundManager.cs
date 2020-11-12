@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class BackgroundManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BackgroundManager : MonoBehaviour
      */
 
     public GameObject levelLoaderIntroObject;
+
     // public BoundsInt bounds = new BoundsInt(new Vector3Int(0,0,0), sizeof: new Vector3Int(100,100,0);
 
     void Start()
@@ -21,7 +23,7 @@ public class BackgroundManager : MonoBehaviour
         // Will probably need to kick off a coroutine that turns on controls after the intro duration
         LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
         int intro_duration = levelLoaderIntroScriptHandle.Run();
-        
+
     }
 
     IEnumerator LoadGameOverScene()
