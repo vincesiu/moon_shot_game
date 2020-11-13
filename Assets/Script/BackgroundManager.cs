@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+
 
 public class BackgroundManager : MonoBehaviour
 {
@@ -26,9 +28,29 @@ public class BackgroundManager : MonoBehaviour
             int intro_duration = levelLoaderIntroScriptHandle.Run();
         }
 
+        Debug.Log("meow");
+
+        if (EventManager.current == null)
+        {
+            throw new Exception("Could not find an EventManager in the current scene, cowardly refusing to proceed");
+        }
+        EventManager.current.onCharacterDeathEvent += LoadGameOverScene;
     }
 
-    IEnumerator LoadGameOverScene()
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            EventManager.current.CharacterDamageEvent(1);
+        }
+    }
+
+    private void LoadGameOverScene()
+    {
+        StartCoroutine(GenLoadGameOverScene());
+    }
+
+    IEnumerator GenLoadGameOverScene()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Single);
 
