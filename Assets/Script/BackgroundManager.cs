@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class BackgroundManager : MonoBehaviour
 {
@@ -13,41 +14,26 @@ public class BackgroundManager : MonoBehaviour
      * 
      */
 
-    // vince: I want this eventually to be Unloaded, Loading, and Loaded. For now, this works, will fix later.
-    enum PauseOverlayStatus
-    {
-        NotLoading,
-        Loading,
-    }
+    public GameObject levelLoaderIntroObject;
 
-    PauseOverlayStatus pauseOverlayStatus;
-
+    // public BoundsInt bounds = new BoundsInt(new Vector3Int(0,0,0), sizeof: new Vector3Int(100,100,0);
 
     void Start()
     {
-        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
+        // Will probably need to kick off a coroutine that turns on controls after the intro duration
+        LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
+        int intro_duration = levelLoaderIntroScriptHandle.Run();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LoadGameOverScene()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseOverlayStatus == PauseOverlayStatus.NotLoading)
-        {
-            Debug.Log("Starting to async load pause overlay");
-            StartCoroutine(LoadPauseScene());
-            pauseOverlayStatus = PauseOverlayStatus.Loading;
-        }
-    }
-
-    IEnumerator LoadPauseScene()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("PauseOverlay", LoadSceneMode.Additive);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Single);
 
         while (!operation.isDone)
         {
             yield return null;
         }
-
-        pauseOverlayStatus = PauseOverlayStatus.NotLoading;
+        
     }
 }
