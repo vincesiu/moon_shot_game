@@ -8,6 +8,8 @@ using UnityEngine;
 public class EnemyKite : MonoBehaviour {
     public float speed;
 
+    public float health;
+
     public Transform target;
 
     public float stopDistance;
@@ -46,7 +48,7 @@ public class EnemyKite : MonoBehaviour {
         
         //UnityEngine.Debug.Log(Vector2.Distance(transform.position, target.position));
         // if enemy is in stopping distance, enemy will shake
-        else if (Vector2.Distance(transform.position, target.position) < stopDistance+5) {
+        else if (Vector2.Distance(transform.position, target.position) < stopDistance && Vector2.Distance(transform.position, target.position) > retreatDistance) {
 
             Shake();
             Attack();
@@ -83,8 +85,15 @@ public class EnemyKite : MonoBehaviour {
     void Shake() {
         if (shakeInterval <= 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + Random.Range(-10.5f, 10.5f), transform.position.y + Random.Range(-10.5f, 10.5f)), speed * Time.deltaTime);
+            float randX = Random.Range(-10.5f, 10.5f);
+            float randY = Random.Range(-10.5f, 10.5f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + randX, transform.position.y + randY), -speed * Time.deltaTime);
             shakeInterval = startShakeTime;
+           
+            UnityEngine.Debug.Log("this is randX");
+            UnityEngine.Debug.Log(randX);
+            UnityEngine.Debug.Log("this is randY");
+            UnityEngine.Debug.Log(randY);
         }
         else {
             shakeInterval -= Time.deltaTime;

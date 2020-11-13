@@ -154,6 +154,13 @@ MonoBehaviour:
   speed: 5
   target: {fileID: 0}
   stopDistance: 7
+  retreatDistance: 5
+  shotIntervals: 0
+  startTimeShots: 2
+  projectile: {fileID: 3888475111619822869, guid: 7681d2922c59339479a18b31398dd0ac,
+    type: 3}
+  shakeInterval: 0
+  startShakeTime: 1
 --- !u!212 &311007910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -414,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141790e17f37e594196ec39aa9934d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 0}
 --- !u!1 &1073340709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1beb7d3c9533d4ab90504cade1524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.2
+  speed: 1.3
   target: {fileID: 0}
 --- !u!212 &1975623876
 SpriteRenderer:
