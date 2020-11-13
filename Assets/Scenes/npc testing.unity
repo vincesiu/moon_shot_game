@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6376694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6376696}
+  - component: {fileID: 6376695}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &6376695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046f5887e6da7c3439f5653dadd72bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6376696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.541705, y: 6.8143377, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311007908
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  health: 0
   target: {fileID: 0}
   stopDistance: 7
   retreatDistance: 5
@@ -283,6 +327,7 @@ GameObject:
   - component: {fileID: 754665177}
   - component: {fileID: 754665181}
   - component: {fileID: 754665182}
+  - component: {fileID: 754665183}
   m_Layer: 0
   m_Name: dude
   m_TagString: Player
@@ -422,6 +467,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 0}
+  attached: 0
+--- !u!114 &754665183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754665176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4ab6d2599ca4644ae225abb5f2c3ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073340709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.3
   target: {fileID: 0}
+  health: 0
 --- !u!212 &1975623876
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1305,6 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8501f83570bd83c4f9891bf3f8882067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoaderIntroObject: {fileID: 0}
 --- !u!4 &2054995501
 Transform:
   m_ObjectHideFlags: 0
