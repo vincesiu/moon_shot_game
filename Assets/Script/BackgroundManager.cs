@@ -21,8 +21,10 @@ public class BackgroundManager : MonoBehaviour
     void Start()
     {
         // Will probably need to kick off a coroutine that turns on controls after the intro duration
-        LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
-        int intro_duration = levelLoaderIntroScriptHandle.Run();
+        if (levelLoaderIntroObject != null) {
+            LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
+            int intro_duration = levelLoaderIntroScriptHandle.Run();
+        }
 
     }
 
