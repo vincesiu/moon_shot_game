@@ -44,7 +44,9 @@ public class ProjectileBehavior : MonoBehaviour
 
     }
 
-    void ImpactProjectile(){
+    void ImpactProjectile()
+    {
+        EventManager.current.CharacterDamageEvent(1);
         Destroy(this.gameObject);
     }
 }

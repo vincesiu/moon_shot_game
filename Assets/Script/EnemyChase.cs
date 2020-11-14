@@ -10,6 +10,8 @@ public class EnemyChase : MonoBehaviour
 
     public Transform target;
 
+    public float health;
+
     
     // Start is called before the first frame update
     void Start()

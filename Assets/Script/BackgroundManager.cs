@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
+
 
 public class BackgroundManager : MonoBehaviour
 {
@@ -13,26 +16,41 @@ public class BackgroundManager : MonoBehaviour
      * 
      */
 
+    public GameObject levelLoaderIntroObject;
+
+    // public BoundsInt bounds = new BoundsInt(new Vector3Int(0,0,0), sizeof: new Vector3Int(100,100,0);
 
     void Start()
     {
+        // Will probably need to kick off a coroutine that turns on controls after the intro duration
+        if (levelLoaderIntroObject != null) {
+            LevelLoaderIntro levelLoaderIntroScriptHandle = levelLoaderIntroObject.GetComponent<LevelLoaderIntro>();
+            int intro_duration = levelLoaderIntroScriptHandle.Run();
+        }
 
+        Debug.Log("meow");
+
+        if (EventManager.current == null)
+        {
+            throw new Exception("Could not find an EventManager in the current scene, cowardly refusing to proceed");
+        }
+        EventManager.current.onCharacterDeathEvent += LoadGameOverScene;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseOverlayStatus == PauseOverlayStatus.NotLoading)
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Starting to async load pause overlay");
-            StartCoroutine(LoadPauseScene());
-            pauseOverlayStatus = PauseOverlayStatus.Loading;
+            EventManager.current.CharacterDamageEvent(1);
         }
-        */
     }
 
-    IEnumerator LoadGameOverScene()
+    private void LoadGameOverScene()
+    {
+        StartCoroutine(GenLoadGameOverScene());
+    }
+
+    IEnumerator GenLoadGameOverScene()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Single);
 
