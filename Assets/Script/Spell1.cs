@@ -10,6 +10,8 @@ public class Spell1 : MonoBehaviour {
     private Transform aimTransform;
     private Rigidbody2D myRigidBody;
     //private Transform aimWeaponEndPointTransform;
+    private SpellState state = SpellState.Ready;
+    public float SpellCD = 1;
 
     public GameObject spellPrefab;
     public bool attached;
@@ -60,11 +62,28 @@ public class Spell1 : MonoBehaviour {
             //myRigidBody.MovePosition(dudeTransform.position);
 
             Aim();
+
+            if (Input.GetMouseButtonDown(0)) {
+                if (state == SpellState.Ready) {
+                    shootSpell();
+                    state = SpellState.Cooldown;
+                }
+            }
+
+            if (state == SpellState.Cooldown) {
+                SpellCD -= Time.deltaTime;
+            }
+
+            if (SpellCD <= 0) {
+                state = SpellState.Ready;
+                SpellCD = 1;
+            }
         }
 
+        /*
         if (Input.GetMouseButtonDown(0) && attached) {
             shootSpell();
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -111,5 +130,10 @@ public class Spell1 : MonoBehaviour {
     public void shootSpell() {
         GameObject spell = Instantiate(spellPrefab) as GameObject;
         spell.transform.position = aimTransform.transform.position;
+    }
+
+    public enum SpellState{
+        Ready,
+        Cooldown
     }
 }
