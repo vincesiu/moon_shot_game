@@ -33,10 +33,13 @@ public class EventManager : MonoBehaviour {
 
 
     public event Action<int> onEnemyDeathEvent;
-    public void EnemyDeathEvent(int target) {
-        if (onEnemyDeathEvent != null) {
-            onEnemyDeathEvent(target); 
+    public void EnemyDeathEvent(int target)
+    {
+        if (onEnemyDeathEvent != null)
+        {
+            onEnemyDeathEvent(target);
         }
+    }
 
 
     public event Action onCharacterSpellPickup;
