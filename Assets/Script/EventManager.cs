@@ -28,4 +28,20 @@ public class EventManager : MonoBehaviour
             onCharacterDamageEvent(damage);
         }
     }
+
+    public event Action<int, int> onEnemyDamageEvent;
+    public void EnemyDamageEvent(int damage, int target) {
+        if (onEnemyDamageEvent != null){
+            onEnemyDamageEvent(damage, target);
+        }
+    }
+
+
+    public event Action<int> onEnemyDeathEvent;
+    public void EnemyDeathEvent(int target) {
+        if (onEnemyDeathEvent != null) {
+            onEnemyDeathEvent(target); 
+        }
+
+    }
 }

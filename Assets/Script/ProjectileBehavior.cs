@@ -14,7 +14,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("MainDude").transform;
         target = new Vector2(player.position.x, player.position.y);
     }
 
@@ -22,10 +22,11 @@ public class ProjectileBehavior : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
-        if (transform.position.x ==target.x && transform.position.y == target.y) {
-            ImpactProjectile();
+        
+        if (transform.position.x == target.x && transform.position.y == target.y) {
+            Destroy(this.gameObject);
         }
+
     }
 
     /*void Death(){
@@ -40,7 +41,11 @@ public class ProjectileBehavior : MonoBehaviour
     }*/
 
     void OnTriggerEnter2D(Collider2D other){
+            
+        if (other.gameObject.tag =="MainDude") {
             ImpactProjectile();
+        }
+            
 
     }
 

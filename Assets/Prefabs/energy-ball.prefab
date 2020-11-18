@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7606307268381503744}
   - component: {fileID: 2320378775506073997}
   - component: {fileID: 981535722561343510}
+  - component: {fileID: -5240538802880493302}
   m_Layer: 0
   m_Name: energy-ball
   m_TagString: Untagged
@@ -96,3 +97,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifeTime: 20
+--- !u!58 &-5240538802880493302
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3888475111619822869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
