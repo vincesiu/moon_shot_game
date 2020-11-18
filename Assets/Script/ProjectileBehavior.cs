@@ -21,11 +21,12 @@ public class ProjectileBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if (transform.position.x ==target.x && transform.position.y == target.y) {
             ImpactProjectile();
-        }
+        }*/
     }
 
     /*void Death(){
@@ -46,7 +47,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     void ImpactProjectile()
     {
-        EventManager.current.CharacterDamageEvent(1);
+        //EventManager.current.CharacterDamageEvent(1);
         Destroy(this.gameObject);
     }
 }
