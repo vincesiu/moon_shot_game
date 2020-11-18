@@ -47,12 +47,12 @@ PrefabInstance:
     - target: {fileID: 981535722561343510, guid: 7681d2922c59339479a18b31398dd0ac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3888475111619822869, guid: 7681d2922c59339479a18b31398dd0ac,
         type: 3}
       propertyPath: m_Name
-      value: energy-ball
+      value: TESTBALL
       objectReference: {fileID: 0}
     - target: {fileID: 7606307268381503744, guid: 7681d2922c59339479a18b31398dd0ac,
         type: 3}
