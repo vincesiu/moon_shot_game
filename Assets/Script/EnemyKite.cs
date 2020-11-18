@@ -22,6 +22,8 @@ public class EnemyKite : MonoBehaviour {
 
     public GameObject projectile;
 
+    public GameObject self1; 
+
     public float shakeInterval;
 
     public float startShakeTime;
@@ -30,11 +32,17 @@ public class EnemyKite : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("MainDude").GetComponent<Transform>();
 
         shotIntervals = startTimeShots;
 
         shakeInterval = startShakeTime;
+
+        self1 = GameObject.FindWithTag("Enemy");
+
+        EventManager.current.onEnemyDamageEvent += OnEnemyDamage;
+
+        EventManager.current.onEnemyDeathEvent += OnEnemyDeath;
 
     }
 
@@ -43,7 +51,6 @@ public class EnemyKite : MonoBehaviour {
         // runs towards enemy until enemy reaches stopping distance
         if (Vector2.Distance(transform.position, target.position) > stopDistance) {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            Kite();
         }
         
         //UnityEngine.Debug.Log(Vector2.Distance(transform.position, target.position));
@@ -52,23 +59,18 @@ public class EnemyKite : MonoBehaviour {
 
             Shake();
             Attack();
-            UnityEngine.Debug.Log("inside shake if");
+           // UnityEngine.Debug.Log("inside shake if");
 
         }
         // if player closes the gap between enemy, enemy will retreat
         if (Vector2.Distance(transform.position, target.position) < retreatDistance) {
             transform.position = Vector2.MoveTowards(transform.position, target.position/*new Vector2(transform.position.x - stopDistance, transform.position.y - stopDistance)*/, -speed * Time.deltaTime);
            
-            UnityEngine.Debug.Log("inside retreat if");
+            //UnityEngine.Debug.Log("inside retreat if");
         }
 
     }
 
-
-    IEnumerator Kite() {
-        yield return new WaitForSeconds(300);
-
-    }
 
     void Attack() {
         if (shotIntervals <= 0) {
@@ -90,14 +92,42 @@ public class EnemyKite : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + randX, transform.position.y + randY), -speed * Time.deltaTime);
             shakeInterval = startShakeTime;
            
-            UnityEngine.Debug.Log("this is randX");
-            UnityEngine.Debug.Log(randX);
-            UnityEngine.Debug.Log("this is randY");
-            UnityEngine.Debug.Log(randY);
+            //UnityEngine.Debug.Log("this is randX");
+           // UnityEngine.Debug.Log(randX);
+           // UnityEngine.Debug.Log("this is randY");
+           // UnityEngine.Debug.Log(randY);
         }
         else {
             shakeInterval -= Time.deltaTime;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D hit) {
+        UnityEngine.Debug.Log("inside enemy damage collision function");
+        if (hit.gameObject.tag == "Spell1"){
+            EventManager.current.EnemyDamageEvent(1, self1.GetInstanceID());
+        }
+
+    }
+
+
+    void OnEnemyDamage(int damage, int target) {
+        if (self1.GetInstanceID() == target)
+        {
+            health -= damage;
+            UnityEngine.Debug.Log("Enemy took " + damage + " damage, " + health + " health remaining");
+        }
+        
+        if (health <= 0) {
+            EventManager.current.EnemyDeathEvent(this.GetInstanceID());
+        }
+    }
+
+    void OnEnemyDeath(int target){
+        UnityEngine.Debug.Log("inside enemy death");
+        //if (self1.GetInstanceID() == target) {
+            Destroy(this.gameObject);
+       //}
     }
 
 }
