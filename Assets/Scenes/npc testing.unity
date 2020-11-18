@@ -175,9 +175,10 @@ GameObject:
   - component: {fileID: 311007911}
   - component: {fileID: 311007910}
   - component: {fileID: 311007909}
+  - component: {fileID: 311007912}
   m_Layer: 0
   m_Name: test-image-32x32 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  health: 0
+  health: 1
   target: {fileID: 0}
   stopDistance: 7
   retreatDistance: 5
@@ -203,6 +204,7 @@ MonoBehaviour:
   startTimeShots: 2
   projectile: {fileID: 3888475111619822869, guid: 7681d2922c59339479a18b31398dd0ac,
     type: 3}
+  self1: {fileID: 0}
   shakeInterval: 0
   startShakeTime: 1
 --- !u!212 &311007910
@@ -269,6 +271,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &311007912
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311007908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.03}
+  m_Size: {x: 0.3, y: 0.29}
+  m_Direction: 0
 --- !u!1 &469383270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1144,7 @@ GameObject:
   - component: {fileID: 1975623875}
   m_Layer: 0
   m_Name: test-image-32x32
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

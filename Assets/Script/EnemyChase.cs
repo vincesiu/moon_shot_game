@@ -12,11 +12,16 @@ public class EnemyChase : MonoBehaviour
 
     public float health;
 
-    
+    public GameObject self1;
+
+
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("MainDude").GetComponent<Transform>();
+
+        self1 = GameObject.FindWithTag("Enemy");
+
 
     }
 
@@ -24,6 +29,16 @@ public class EnemyChase : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+    }
+
+    void OnTriggerEnter2D(Collider2D hit)
+    {
+        UnityEngine.Debug.Log("inside enemy damage collision function");
+        if (hit.gameObject.tag == "Spell1")
+        {
+            EventManager.current.EnemyDamageEvent(1, self1.GetInstanceID());
+        }
 
     }
 }
