@@ -35,8 +35,9 @@ public class EventManager : MonoBehaviour {
     public event Action<int> onEnemyDeathEvent;
     public void EnemyDeathEvent(int target) {
         if (onEnemyDeathEvent != null) {
-            onEnemyDeathEvent(target); 
+            onEnemyDeathEvent(target);
         }
+    }
 
 
     public event Action onCharacterSpellPickup;
@@ -46,10 +47,10 @@ public class EventManager : MonoBehaviour {
         }
     }
 
-    public event Action<bool> onCharacterWeaponAttachment;
-    public void CharacterWeaponAttachment(bool attached) {
+    public event Action onCharacterWeaponAttachment;
+    public void CharacterWeaponAttachment() {
         if (onCharacterWeaponAttachment != null) {
-            onCharacterWeaponAttachment(attached);
+            onCharacterWeaponAttachment();
         }
 
     }

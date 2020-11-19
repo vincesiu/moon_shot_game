@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1621853319042151324
+--- !u!1 &7118156034986975128
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1621853319042151327}
-  - component: {fileID: 1621853319042151326}
-  - component: {fileID: 7316593660152439736}
-  - component: {fileID: 6804969987049171238}
-  - component: {fileID: -6067473016098459424}
+  - component: {fileID: 7118156034986975131}
+  - component: {fileID: 7118156034986975130}
+  - component: {fileID: 7118156034986975125}
+  - component: {fileID: 1279300575057072060}
+  - component: {fileID: 8379296971830237606}
   m_Layer: 0
-  m_Name: SpellWeapon1
-  m_TagString: Spell1
+  m_Name: SpellWeapon3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1621853319042151327
+--- !u!4 &7118156034986975131
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621853319042151324}
+  m_GameObject: {fileID: 7118156034986975128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.44, z: 0}
+  m_LocalPosition: {x: 2.32, y: -1.858, z: 0}
   m_LocalScale: {x: 5.9183626, y: 5.9183626, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1621853319042151326
+--- !u!212 &7118156034986975130
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621853319042151324}
+  m_GameObject: {fileID: 7118156034986975128}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -94983745
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f03d65eca65243d0963f648c2e9824a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 06a287cc97cb64df8a11af10f2352365, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,40 +84,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7316593660152439736
+--- !u!114 &7118156034986975125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118156034986975128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141790e17f37e594196ec39aa9934d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpellCD: 3
+  spellPrefab: {fileID: 7419628859410018253, guid: 41519d49cbf00784a952fe69a4ede581,
+    type: 3}
+  attached: 0
+--- !u!61 &1279300575057072060
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621853319042151324}
+  m_GameObject: {fileID: 7118156034986975128}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0015981067, y: 0.00000006519258}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.07, y: 0.06}
+    oldSize: {x: 0.31, y: 0.35}
     newSize: {x: 0.07, y: 0.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.07, y: 0.07}
+  m_Size: {x: 0.050823312, y: 0.054019447}
   m_EdgeRadius: 0
---- !u!50 &6804969987049171238
+--- !u!50 &8379296971830237606
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621853319042151324}
+  m_GameObject: {fileID: 7118156034986975128}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -131,19 +147,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6067473016098459424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621853319042151324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 141790e17f37e594196ec39aa9934d48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpellCD: 1
-  spellPrefab: {fileID: 7419628859410018253, guid: 769334e71330fb34cb0271e531993945,
-    type: 3}
-  attached: 0

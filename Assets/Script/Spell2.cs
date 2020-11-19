@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Spell1 : MonoBehaviour {
+public class Spell2 : MonoBehaviour {
 
     private Transform dudeTransform;
     private Transform aimTransform;
@@ -86,33 +86,31 @@ public class Spell1 : MonoBehaviour {
         }
     }
 
-    void onSpellPickup () {
-        if (attached) {
+    void onSpellPickup() {
+        if (attached) { 
             aimTransform = GameObject.FindWithTag("SpellAim").transform;
 
             foreach (Behaviour childCompnent in GameObject.FindWithTag("SpellAim").GetComponentsInChildren<Behaviour>()) {
                 childCompnent.enabled = false;
-
             }
 
             foreach (Transform child in aimTransform) {
                 if (child != null) {
+                    //child.gameObject.SetActive(false);
                     GameObject.Destroy(child.gameObject);
 
                 }
             }
 
-
-
             this.transform.position = new Vector3(aimTransform.position.x, aimTransform.position.y + 0.4f, 0f);
             Destroy(this.GetComponent<Rigidbody2D>());
             GetComponent<BoxCollider2D>().enabled = false;
-
             aimTransform.rotation = Quaternion.Euler(0, 0, 0);
             gameObject.GetComponent<Transform>().SetParent(GameObject.FindWithTag("SpellAim").transform);
 
             Aim();
         }
+
     }
 
     private void Aim() {
@@ -136,7 +134,7 @@ public class Spell1 : MonoBehaviour {
         EventManager.current.onCharacterWeaponAttachment -= onWeaponAttachment;
     }
 
-    public enum SpellState{
+    public enum SpellState {
         Ready,
         Cooldown
     }

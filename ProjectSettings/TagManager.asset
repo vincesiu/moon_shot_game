@@ -7,6 +7,7 @@ TagManager:
   - MainDude
   - SpellAim
   - Spell1
+  - Spell2
   layers:
   - Default
   - TransparentFX
