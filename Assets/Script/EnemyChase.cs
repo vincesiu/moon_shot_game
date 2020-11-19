@@ -20,7 +20,6 @@ public class EnemyChase : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("MainDude").GetComponent<Transform>();
 
-        self1 = GameObject.FindWithTag("Enemy");
 
 
     }
@@ -32,13 +31,4 @@ public class EnemyChase : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D hit)
-    {
-        UnityEngine.Debug.Log("inside enemy damage collision function");
-        if (hit.gameObject.tag == "Spell1")
-        {
-            EventManager.current.EnemyDamageEvent(1, self1.GetInstanceID());
-        }
-
-    }
 }
