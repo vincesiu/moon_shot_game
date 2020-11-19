@@ -33,8 +33,10 @@ public class EventManager : MonoBehaviour {
 
 
     public event Action<int> onEnemyDeathEvent;
-    public void EnemyDeathEvent(int target) {
-        if (onEnemyDeathEvent != null) {
+    public void EnemyDeathEvent(int target)
+    {
+        if (onEnemyDeathEvent != null)
+        {
             onEnemyDeathEvent(target);
         }
     }

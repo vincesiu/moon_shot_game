@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyKite : MonoBehaviour {
     public float speed;
 
-    public float health;
+    //public float health;
 
     public Transform target;
 
@@ -22,7 +22,7 @@ public class EnemyKite : MonoBehaviour {
 
     public GameObject projectile;
 
-    public GameObject self1; 
+    //public GameObject self1; 
 
     public float shakeInterval;
 
@@ -38,12 +38,13 @@ public class EnemyKite : MonoBehaviour {
 
         shakeInterval = startShakeTime;
 
-        self1 = GameObject.FindWithTag("Enemy");
+        /*
+         self1 = GameObject.FindWithTag("Enemy");
 
         EventManager.current.onEnemyDamageEvent += OnEnemyDamage;
 
         EventManager.current.onEnemyDeathEvent += OnEnemyDeath;
-
+        */
     }
 
     // Update is called once per frame
@@ -59,14 +60,14 @@ public class EnemyKite : MonoBehaviour {
 
             Shake();
             Attack();
-            UnityEngine.Debug.Log("inside shake if");
+           // UnityEngine.Debug.Log("inside shake if");
 
         }
         // if player closes the gap between enemy, enemy will retreat
         if (Vector2.Distance(transform.position, target.position) < retreatDistance) {
             transform.position = Vector2.MoveTowards(transform.position, target.position/*new Vector2(transform.position.x - stopDistance, transform.position.y - stopDistance)*/, -speed * Time.deltaTime);
            
-            UnityEngine.Debug.Log("inside retreat if");
+            //UnityEngine.Debug.Log("inside retreat if");
         }
 
     }
@@ -92,17 +93,19 @@ public class EnemyKite : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + randX, transform.position.y + randY), -speed * Time.deltaTime);
             shakeInterval = startShakeTime;
            
-            UnityEngine.Debug.Log("this is randX");
-            UnityEngine.Debug.Log(randX);
-            UnityEngine.Debug.Log("this is randY");
-            UnityEngine.Debug.Log(randY);
+            //UnityEngine.Debug.Log("this is randX");
+           // UnityEngine.Debug.Log(randX);
+           // UnityEngine.Debug.Log("this is randY");
+           // UnityEngine.Debug.Log(randY);
         }
         else {
             shakeInterval -= Time.deltaTime;
         }
     }
-
-    void OnTriggerEnter2D(Collider2D hit) { 
+    /* 
+     ***********************************************************************************************************
+    void OnTriggerEnter2D(Collider2D hit) {
+        UnityEngine.Debug.Log("inside enemy damage collision function");
         if (hit.gameObject.tag == "Spell1"){
             EventManager.current.EnemyDamageEvent(1, self1.GetInstanceID());
         }
@@ -123,9 +126,11 @@ public class EnemyKite : MonoBehaviour {
     }
 
     void OnEnemyDeath(int target){
-        if (self1.GetInstanceID() == target) {
+        UnityEngine.Debug.Log("inside enemy death");
+        //if (self1.GetInstanceID() == target) {
             Destroy(this.gameObject);
-        }
+       //}
     }
-
+    ********************************************************************************************************************
+    */
 }
