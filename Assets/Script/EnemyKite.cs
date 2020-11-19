@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyKite : MonoBehaviour {
     public float speed;
 
-    public float health;
+    //public float health;
 
     public Transform target;
 
@@ -22,7 +22,7 @@ public class EnemyKite : MonoBehaviour {
 
     public GameObject projectile;
 
-    public GameObject self1; 
+    //public GameObject self1; 
 
     public float shakeInterval;
 
@@ -38,12 +38,13 @@ public class EnemyKite : MonoBehaviour {
 
         shakeInterval = startShakeTime;
 
-        self1 = GameObject.FindWithTag("Enemy");
+        /*
+         self1 = GameObject.FindWithTag("Enemy");
 
         EventManager.current.onEnemyDamageEvent += OnEnemyDamage;
 
         EventManager.current.onEnemyDeathEvent += OnEnemyDeath;
-
+        */
     }
 
     // Update is called once per frame
@@ -101,7 +102,8 @@ public class EnemyKite : MonoBehaviour {
             shakeInterval -= Time.deltaTime;
         }
     }
-
+    /* 
+     ***********************************************************************************************************
     void OnTriggerEnter2D(Collider2D hit) {
         UnityEngine.Debug.Log("inside enemy damage collision function");
         if (hit.gameObject.tag == "Spell1"){
@@ -129,5 +131,6 @@ public class EnemyKite : MonoBehaviour {
             Destroy(this.gameObject);
        //}
     }
-
+    ********************************************************************************************************************
+    */
 }
