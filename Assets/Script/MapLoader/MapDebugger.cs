@@ -56,7 +56,7 @@ public class MapDebugger : MonoBehaviour
         GenerateBackgroundWalls();
 
         
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 5; i++)
         {
             BoundsInt bounds = new BoundsInt(new Vector3Int(0, i * 17, 0), new Vector3Int(22, 17, 1));
             if (i == 0)

@@ -29,7 +29,7 @@ public class DudeMovement : MonoBehaviour {
         canMove = false;
 
         EventManager.current.onEnableUserInput += EnableUserInput;
-        target = new Vector3(10.0f, 15.0f, 0.0f);
+        target = new Vector3(1.0f, 0.0f, 0.0f);
         shouldMoveTowardsTarget = true;
     }
 
