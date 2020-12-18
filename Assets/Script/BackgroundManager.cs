@@ -20,6 +20,8 @@ public class BackgroundManager : MonoBehaviour
 
     // public BoundsInt bounds = new BoundsInt(new Vector3Int(0,0,0), sizeof: new Vector3Int(100,100,0);
 
+    private int tempDeleteMe;
+
     void Start()
     {
         // Will probably need to kick off a coroutine that turns on controls after the intro duration
@@ -35,6 +37,9 @@ public class BackgroundManager : MonoBehaviour
             throw new Exception("Could not find an EventManager in the current scene, cowardly refusing to proceed");
         }
         EventManager.current.onCharacterDeathEvent += LoadGameOverScene;
+
+        StartCoroutine(GenEnableMouseInput());
+        StartCoroutine(GenDisableMouseInput());
     }
 
     void Update()
@@ -59,5 +64,18 @@ public class BackgroundManager : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    IEnumerator GenEnableMouseInput()
+    {
+        yield return new WaitForSeconds(4);
+        Debug.Log("Enabling input");
+        EventManager.current.EnableUserInput(true);
+    }
+    IEnumerator GenDisableMouseInput()
+    {
+        yield return new WaitForSeconds(8);
+        Debug.Log("Disabling input");
+        EventManager.current.EnableUserInput(false);
     }
 }

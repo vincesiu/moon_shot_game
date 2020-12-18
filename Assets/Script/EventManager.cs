@@ -54,6 +54,17 @@ public class EventManager : MonoBehaviour {
         if (onCharacterWeaponAttachment != null) {
             onCharacterWeaponAttachment();
         }
+    }
 
+    public event Action<bool> onEnableUserInput;
+    // This is for the main character "dude"
+    // True == enable user input
+    // False == disable user input
+    public void EnableUserInput(bool enabled)
+    {
+        if (onEnableUserInput != null)
+        {
+            onEnableUserInput(enabled);
+        }
     }
 }
