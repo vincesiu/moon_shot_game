@@ -9,6 +9,8 @@ public class MapDebugger : MonoBehaviour
     public GameObject grid;
 
     // Prefabs
+    public GameObject startRoomTemplate;
+    public GameObject endRoomTemplate;
     public GameObject wallsTemplate;
     public GameObject roomTemplate;
     public GameObject hallwayTemplate;
@@ -29,6 +31,8 @@ public class MapDebugger : MonoBehaviour
     // TODO: remove later, used for manually opening and closing doors
     GameObject doorsObject;
 
+    int remainingEnemies;
+
     private int roomCounter;
     
     enum RoomType
@@ -41,6 +45,8 @@ public class MapDebugger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        remainingEnemies = 0;
+
         roomCounter = 0;
         GameObject hallwayObject = Instantiate(hallwayTemplate);
         hallwayObject.transform.parent = grid.transform;
@@ -72,6 +78,20 @@ public class MapDebugger : MonoBehaviour
         }
 
         doorsObject.SetActive(false);
+
+        EventManager.current.onFinishRoom += turnOffDoors;
+        EventManager.current.onStartRoom += turnOnDoors;
+        EventManager.current.onStartRoom += SetEnemies;
+    }
+
+    void turnOnDoors(int _)
+    {
+        doorsObject.SetActive(true);
+    }
+
+    void turnOffDoors()
+    {
+        doorsObject.SetActive(false);
     }
 
     void Update()
@@ -79,6 +99,19 @@ public class MapDebugger : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             doorsObject.SetActive(!doorsObject.activeSelf);
+        }
+    }
+
+    void SetEnemies(int _)
+    {
+        remainingEnemies = 3;
+    }
+
+    void DecreaseRemainingEnemies()
+    {
+        if (--remainingEnemies <= 0)
+        {
+            EventManager.current.FinishRoom();
         }
     }
 
@@ -145,7 +178,18 @@ public class MapDebugger : MonoBehaviour
             wallTiles[width * idx + width - 1] = GenWallTile();
         }
 
-        GameObject roomObject = Instantiate(roomTemplate);
+
+        GameObject roomObject;
+
+        if (roomType == RoomType.BossRoom) {
+            roomObject = Instantiate(roomTemplate);
+        } else if (roomType == RoomType.StartRoom) {
+            roomObject = Instantiate(startRoomTemplate);
+        } else
+        {
+            roomObject = Instantiate(roomTemplate);
+        }
+
         roomObject.transform.parent = grid.transform;
         roomObject.name = string.Format("room_{0}_{1}", roomType, roomCounter++);
 
@@ -178,6 +222,7 @@ public class MapDebugger : MonoBehaviour
         wallsTilemap.SetTilesBlock(bounds, wallTiles);
         hallwayTilemap.SetTilesBlock(bounds, hallwayTiles);
         doorsTilemap.SetTilesBlock(bounds, doorwayTiles);
+
     }
 
     TileBase GenFloorTile()

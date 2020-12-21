@@ -11,7 +11,7 @@ public class DudeMovement : MonoBehaviour {
     // Bunch of variables used for moving in the mini cutscene when entering the room
     private bool canMove;
     private Vector3 target;
-    private bool shouldMoveTowardsTarget;
+    private bool shouldMoveIntoRoom;
 
     //private Vector2 movement;
     void MoveDude() {
@@ -29,13 +29,30 @@ public class DudeMovement : MonoBehaviour {
         canMove = false;
 
         EventManager.current.onEnableUserInput += EnableUserInput;
-        target = new Vector3(1.0f, 0.0f, 0.0f);
-        shouldMoveTowardsTarget = true;
+        shouldMoveIntoRoom = false;
     }
 
     void EnableUserInput(bool enable)
     {
         canMove = enable;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject);
+        //if col.gameObject.name.Contains()
+        StartCoroutine(RoomStartSequence());
+    }
+
+    IEnumerator RoomStartSequence()
+    {
+        shouldMoveIntoRoom = true;
+        canMove = false;
+        yield return new WaitForSeconds(1.5f);
+        EventManager.current.StartRoom(1);
+        yield return new WaitForSeconds(0.5f);
+        shouldMoveIntoRoom = false;
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -45,14 +62,12 @@ public class DudeMovement : MonoBehaviour {
             change.x = Input.GetAxisRaw("Horizontal");
             change.y = Input.GetAxisRaw("Vertical");
             change = Vector3.Normalize(change);
-        } else if (shouldMoveTowardsTarget)
+        } else if (shouldMoveIntoRoom)
         {
-            change = Vector3.MoveTowards(this.transform.position, target, 1.0f);
+            change = new Vector3(0.0f, 1.0f, 0.0f);
             change = Vector3.Normalize(change);
         }
-
-        //Debug.Log(change);
-
+        
         if (change != Vector3.zero && (myRigidBody.velocity == Vector2.zero)) {
             MoveDude();
 

@@ -743,11 +743,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 469383270}
+  startRoomTemplate: {fileID: 9025271047122307655, guid: f22f00c9546335f48a4591dcd93791ee,
+    type: 3}
+  endRoomTemplate: {fileID: 0}
   wallsTemplate: {fileID: 4695085939499321603, guid: 78965d5c392791e48aba4c96bb8ef83f,
     type: 3}
-  roomTemplate: {fileID: 7346758860260508172, guid: 3e7749bc80615b1439a7ea0169668663,
+  roomTemplate: {fileID: 7346758860260508172, guid: 0c22fb8f2efb48f428da3bda74f6092b,
     type: 3}
-  hallwayTemplate: {fileID: 7346758860260508172, guid: 3e7749bc80615b1439a7ea0169668663,
+  hallwayTemplate: {fileID: 2098492018738366891, guid: b97c6519326dcc04781cbdc3840d400e,
     type: 3}
   doorsTemplate: {fileID: 2665769339242755795, guid: b06ab3400cd2c8445809b73cdb0693fc,
     type: 3}

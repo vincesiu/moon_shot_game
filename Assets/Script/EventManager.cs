@@ -67,4 +67,22 @@ public class EventManager : MonoBehaviour {
             onEnableUserInput(enabled);
         }
     }
+
+    public event Action<int> onStartRoom;
+    public void StartRoom(int roomId)
+    {
+        if (onStartRoom != null)
+        {
+            onStartRoom(roomId);
+        }
+    }
+
+    public event Action onFinishRoom;
+    public void FinishRoom()
+    {
+        if (onFinishRoom != null)
+        {
+            onFinishRoom();
+        }
+    }
 }
