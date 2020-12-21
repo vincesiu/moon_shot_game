@@ -41,14 +41,6 @@ public class BackgroundManager : MonoBehaviour
         EventManager.current.EnableUserInput(true);
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            EventManager.current.CharacterDamageEvent(1);
-        }
-    }
-
     private void LoadGameOverScene()
     {
         StartCoroutine(GenLoadGameOverScene());

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3855555058565679675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3855555058565679677}
+  - component: {fileID: 3855555058565679676}
+  - component: {fileID: 3855555058565679678}
+  m_Layer: 0
+  m_Name: _Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3855555058565679677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855555058565679675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 390.2989, y: 367.33688, z: -46.559006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3855555058565679676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855555058565679675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8501f83570bd83c4f9891bf3f8882067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoaderIntroObject: {fileID: 0}
+--- !u!114 &3855555058565679678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855555058565679675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e4050c9708d4a4e9de6c67107b5c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  startRoomTemplate: {fileID: 9025271047122307655, guid: f22f00c9546335f48a4591dcd93791ee,
+    type: 3}
+  endRoomTemplate: {fileID: 0}
+  wallsTemplate: {fileID: 4695085939499321603, guid: 78965d5c392791e48aba4c96bb8ef83f,
+    type: 3}
+  roomTemplate: {fileID: 7346758860260508172, guid: 0c22fb8f2efb48f428da3bda74f6092b,
+    type: 3}
+  hallwayTemplate: {fileID: 2098492018738366891, guid: b97c6519326dcc04781cbdc3840d400e,
+    type: 3}
+  doorsTemplate: {fileID: 2665769339242755795, guid: b06ab3400cd2c8445809b73cdb0693fc,
+    type: 3}
+  enemyTemplate: {fileID: 1894366661379803568, guid: c6cb9b2e056b5b145b133a51ad81e534,
+    type: 3}
+  floor1: {fileID: 11400000, guid: 1f455c4f05d543e4ba4df2993fad983c, type: 2}
+  floor2: {fileID: 11400000, guid: 2e0b89c15df1465428e3c640fb3b0823, type: 2}
+  wall1: {fileID: 11400000, guid: 663cfcfcf00ab6e499873348e0f2b45d, type: 2}
+  wall2: {fileID: 11400000, guid: 89cdb02742c02a349b16775ef6afa672, type: 2}
+  door: {fileID: 11400000, guid: f2cfd5d4659ed92458049a4c05cf7b1a, type: 2}

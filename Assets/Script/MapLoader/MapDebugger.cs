@@ -96,14 +96,6 @@ public class MapDebugger : MonoBehaviour
         doorsObject.SetActive(false);
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            doorsObject.SetActive(!doorsObject.activeSelf);
-        }
-    }
-
     void SetEnemies(string _)
     {
         remainingEnemies = 3;
