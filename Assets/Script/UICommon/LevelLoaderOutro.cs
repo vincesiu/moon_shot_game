@@ -23,11 +23,10 @@ public class LevelLoaderOutro : MonoBehaviour
         Run();
     }
 
-    public int Run()
+    public void Run()
     {
         Debug.Log("Starting level loader outro");
         levelLoaderOutroCanvasHandle.SetActive(true);
         levelLoaderOutroAnimator.SetTrigger("LevelLoaderOutroTrigger");
-        return OUTRO_DURATION_SECS;
     }
 }

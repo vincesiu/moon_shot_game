@@ -111,7 +111,9 @@ public class MapDebugger : MonoBehaviour
 
     void DecreaseRemainingEnemies(int _)
     {
-        if (--remainingEnemies <= 0)
+        remainingEnemies--;
+        Debug.Log("Remaining enemies is " + remainingEnemies);
+        if (remainingEnemies <= 0)
         {
             EventManager.current.FinishRoom();
         }

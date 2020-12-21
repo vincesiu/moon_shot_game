@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DudeMovement : MonoBehaviour { 
     public float velocity;
@@ -12,6 +13,8 @@ public class DudeMovement : MonoBehaviour {
     private bool canMove;
     private Vector3 target;
     private bool shouldMoveIntoRoom;
+    private int health;
+    private bool slowWalk;
 
     //private Vector2 movement;
     void MoveDude() {
@@ -24,12 +27,15 @@ public class DudeMovement : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        
         animator = GetComponent<Animator>();
         myRigidBody = GetComponent<Rigidbody2D>();
         canMove = false;
 
         EventManager.current.onEnableUserInput += EnableUserInput;
         shouldMoveIntoRoom = false;
+        health = 3;
+        slowWalk = false;
     }
 
     void EnableUserInput(bool enable)
@@ -39,9 +45,41 @@ public class DudeMovement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("HMMM I HIT SOMETHING? " + col.gameObject.name);
+        if (col.gameObject.name.Contains("Room"))
+        {
+            Debug.Log("starting room sequence");
+            StartCoroutine(RoomStartSequence(col.gameObject.name));
+        }
+
+        if (col.gameObject.name == "energy-ball(Clone)")
+        {
+            health -= 1;
+            if (health <= 0)
+            {
+                Debug.Log("Main character has died");
+                EventManager.current.CharacterDeathEvent();
+            }
+        }
+        
+        if (col.gameObject.name == "NextLevelEvilLair")
+        {
+            StartCoroutine(gameEndSequence());
+        }
+
         Debug.Log(col.gameObject);
-        //if col.gameObject.name.Contains()
-        StartCoroutine(RoomStartSequence(col.gameObject.name));
+    }
+
+    IEnumerator gameEndSequence()
+    {
+        slowWalk = true;
+        shouldMoveIntoRoom = true;
+        canMove = false;
+        AsyncOperation handle = SceneManager.LoadSceneAsync(4);
+        handle.allowSceneActivation = false;
+        yield return new WaitForSeconds(3f);
+        handle.allowSceneActivation = true;
+
     }
 
     IEnumerator RoomStartSequence(string name)
@@ -64,8 +102,15 @@ public class DudeMovement : MonoBehaviour {
             change = Vector3.Normalize(change);
         } else if (shouldMoveIntoRoom)
         {
+
             change = new Vector3(0.0f, 1.0f, 0.0f);
+
             change = Vector3.Normalize(change);
+            if (slowWalk)
+            {
+
+                change = new Vector3(0.0f, 0.1f, 0.0f);
+            }
         }
         
         if (change != Vector3.zero && (myRigidBody.velocity == Vector2.zero)) {
@@ -73,7 +118,11 @@ public class DudeMovement : MonoBehaviour {
 
             animator.SetFloat("Horizontal", change.x);
             animator.SetFloat("Vertical", change.y);
-            animator.SetFloat("Speed", change.sqrMagnitude);
+            var speed = change.sqrMagnitude;
+
+            animator.SetFloat("Speed", speed);
+
+
         } else {
             //Debug.Log("THE VELOCITY IS: " + myRigidBody.velocity);
             //animator.SetFloat("Horizontal", 0);

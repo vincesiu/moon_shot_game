@@ -11,12 +11,13 @@ public class TitleMenu : MonoBehaviour
     public void onExitClick()
     {
         Debug.Log("Exit button clicked");
+        Application.Quit();
     }
 
     public void onStartClick(int targetScene)
     {
         Debug.Log("Start button clicked");
-        Debug.Log(string.Format("Switching to scene {0}", targetScene));
+        Debug.Log(string.Format("Switching to scene {0}", "dude testing"));
         GameObject startButton = GameObject.Find("StartButton");
         Button btn = startButton.GetComponent<Button>();
         btn.interactable = false;

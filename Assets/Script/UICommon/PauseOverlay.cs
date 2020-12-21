@@ -16,10 +16,9 @@ public class PauseOverlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !pauseOverlay.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Starting to async load pause overlay");
-            pauseOverlay.SetActive(true);
+            pauseOverlay.SetActive(!pauseOverlay.activeSelf);
         }
     }
 

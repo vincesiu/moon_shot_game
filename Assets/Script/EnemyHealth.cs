@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
         self1 = this.gameObject;
 
-        UnityEngine.Debug.Log("this is self1 id value " + self1.GetInstanceID());
+        UnityEngine.Debug.Log("this is self1 id value " + self1.GetInstanceID() + ", reporting " + health + " health remaining");
 
         //UnityEngine.Debug.Log("this is the position value: " + self1.transform.position);
 
@@ -26,11 +26,7 @@ public class EnemyHealth : MonoBehaviour
         EventManager.current.onEnemyDeathEvent += OnEnemyDeath;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     void OnTriggerEnter2D(Collider2D hit)
     {
         //UnityEngine.Debug.Log("inside enemy damage collision function");
@@ -45,19 +41,21 @@ public class EnemyHealth : MonoBehaviour
 
     void OnEnemyDamage(int damage, int target)
     {
-        UnityEngine.Debug.Log("hello meowcent ");
 
-        if (self1.gameObject.GetInstanceID() == target)
+        if (self1.gameObject.GetInstanceID() == target && health >= 0)
         {
             health -= damage;
 
-            UnityEngine.Debug.Log("Enemy took " + damage + " damage, " + health + " health remaining " + "this is the id value: " + self1.GetInstanceID() + " target value is: " + target);
+            UnityEngine.Debug.Log("[stat] Enemy id " + self1.GetInstanceID() + " took " + damage + " damage, " + health + " health remaining " + "this is the id value: " + self1.GetInstanceID());
+
+            if (health <= 0)
+            {
+                UnityEngine.Debug.Log("[event] Firing Enemy Death Event");
+                EventManager.current.EnemyDeathEvent(self1.gameObject.GetInstanceID());
+            }
         }
 
-        if (health <= 0)
-        {
-            EventManager.current.EnemyDeathEvent(self1.gameObject.GetInstanceID());
-        }
+
     }
 
     void OnEnemyDeath(int target)
