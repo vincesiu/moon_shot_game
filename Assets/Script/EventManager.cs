@@ -68,12 +68,12 @@ public class EventManager : MonoBehaviour {
         }
     }
 
-    public event Action<int> onStartRoom;
-    public void StartRoom(int roomId)
+    public event Action<string> onStartRoom;
+    public void StartRoom(string roomName)
     {
         if (onStartRoom != null)
         {
-            onStartRoom(roomId);
+            onStartRoom(roomName);
         }
     }
 

@@ -15,6 +15,7 @@ public class MapDebugger : MonoBehaviour
     public GameObject roomTemplate;
     public GameObject hallwayTemplate;
     public GameObject doorsTemplate;
+    public GameObject enemyTemplate;
 
     // Tile palette since I don't know how to handle resource loading
     public TileBase floor1;
@@ -82,9 +83,10 @@ public class MapDebugger : MonoBehaviour
         EventManager.current.onFinishRoom += turnOffDoors;
         EventManager.current.onStartRoom += turnOnDoors;
         EventManager.current.onStartRoom += SetEnemies;
+        EventManager.current.onEnemyDeathEvent += DecreaseRemainingEnemies;
     }
 
-    void turnOnDoors(int _)
+    void turnOnDoors(string _)
     {
         doorsObject.SetActive(true);
     }
@@ -102,12 +104,12 @@ public class MapDebugger : MonoBehaviour
         }
     }
 
-    void SetEnemies(int _)
+    void SetEnemies(string _)
     {
         remainingEnemies = 3;
     }
 
-    void DecreaseRemainingEnemies()
+    void DecreaseRemainingEnemies(int _)
     {
         if (--remainingEnemies <= 0)
         {
@@ -145,11 +147,11 @@ public class MapDebugger : MonoBehaviour
     // Example: Generates a room with the bottom left at 0,0,0, the interior size is 20x15 = 300 tiles, and there are walls surrounding the inner room
     // BoundsInt nyan = new BoundsInt(new Vector3Int(0, 0, 0), new Vector3Int(22, 17, 1));
     // GenerateRoom(nyan)
-    void GenerateRoom(BoundsInt bounds, RoomType roomType)
+    void GenerateRoom(BoundsInt globalBounds, RoomType roomType)
     {
 
-        int width = bounds.size.x;
-        int height = bounds.size.y;
+        int width = globalBounds.size.x;
+        int height = globalBounds.size.y;
         int size = width * height;
 
         // Floor tilemap generation
@@ -193,8 +195,20 @@ public class MapDebugger : MonoBehaviour
         roomObject.transform.parent = grid.transform;
         roomObject.name = string.Format("room_{0}_{1}", roomType, roomCounter++);
 
+        /*
+        This is a dirty filthy hack and I hate this
+        These next two lines fill me with hatred and anger, but I would rather complete this game rather than fix this properly. 
+        There is a conflict between the coordinate space of the local room, and the global walls/doorways/hallways. If you dig 
+        into the code in the SingleRoomHandler::GenerateEnemies function, you see that I HARDCODE generate the enemy positions 
+        based on the rooms current transformation.
+        
+        This is hardcoded bad juju, but I can't think of a nice way to do enemy generation off the top of my head
+    */
+        BoundsInt fixMeRoomBounds = new BoundsInt(new Vector3Int(0, 0, 0), new Vector3Int(globalBounds.size.x, globalBounds.size.y, 1));
+        roomObject.transform.position = new Vector3(globalBounds.position.x, globalBounds.position.y, 0);
+
         Tilemap roomTilemap = roomObject.GetComponent<Tilemap>();
-        roomTilemap.SetTilesBlock(bounds, roomTiles);
+        roomTilemap.SetTilesBlock(fixMeRoomBounds, roomTiles);
 
         // Hallway tilemap generation
         // Doorway tilemap generation
@@ -219,9 +233,9 @@ public class MapDebugger : MonoBehaviour
         SetDoorway((idx2 * width) + width - 1, hallwayTiles, doorwayTiles, wallTiles);
         SetDoorway(((idx2 + 1) * width) + width - 1, hallwayTiles, doorwayTiles, wallTiles);
 
-        wallsTilemap.SetTilesBlock(bounds, wallTiles);
-        hallwayTilemap.SetTilesBlock(bounds, hallwayTiles);
-        doorsTilemap.SetTilesBlock(bounds, doorwayTiles);
+        wallsTilemap.SetTilesBlock(globalBounds, wallTiles);
+        hallwayTilemap.SetTilesBlock(globalBounds, hallwayTiles);
+        doorsTilemap.SetTilesBlock(globalBounds, doorwayTiles);
 
     }
 

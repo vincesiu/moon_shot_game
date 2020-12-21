@@ -41,15 +41,15 @@ public class DudeMovement : MonoBehaviour {
     {
         Debug.Log(col.gameObject);
         //if col.gameObject.name.Contains()
-        StartCoroutine(RoomStartSequence());
+        StartCoroutine(RoomStartSequence(col.gameObject.name));
     }
 
-    IEnumerator RoomStartSequence()
+    IEnumerator RoomStartSequence(string name)
     {
         shouldMoveIntoRoom = true;
         canMove = false;
         yield return new WaitForSeconds(1.5f);
-        EventManager.current.StartRoom(1);
+        EventManager.current.StartRoom(name);
         yield return new WaitForSeconds(0.5f);
         shouldMoveIntoRoom = false;
         canMove = true;

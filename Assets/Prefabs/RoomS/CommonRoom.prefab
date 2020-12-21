@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7346758860260508147}
   - component: {fileID: 7346758860260508146}
   - component: {fileID: 8994736324865485811}
+  - component: {fileID: 3220490845490972165}
   m_Layer: 0
   m_Name: CommonRoom
   m_TagString: Untagged
@@ -163,3 +164,17 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &3220490845490972165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346758860260508172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b9b14d4a3de20408bf5812e290281a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTemplate: {fileID: 1894366661379803568, guid: c6cb9b2e056b5b145b133a51ad81e534,
+    type: 3}

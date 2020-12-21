@@ -754,6 +754,8 @@ MonoBehaviour:
     type: 3}
   doorsTemplate: {fileID: 2665769339242755795, guid: b06ab3400cd2c8445809b73cdb0693fc,
     type: 3}
+  enemyTemplate: {fileID: 1894366661379803568, guid: c6cb9b2e056b5b145b133a51ad81e534,
+    type: 3}
   floor1: {fileID: 11400000, guid: 1f455c4f05d543e4ba4df2993fad983c, type: 2}
   floor2: {fileID: 11400000, guid: 2e0b89c15df1465428e3c640fb3b0823, type: 2}
   wall1: {fileID: 11400000, guid: 663cfcfcf00ab6e499873348e0f2b45d, type: 2}
