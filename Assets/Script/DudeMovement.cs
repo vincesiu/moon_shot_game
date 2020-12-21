@@ -30,7 +30,7 @@ public class DudeMovement : MonoBehaviour {
         
         animator = GetComponent<Animator>();
         myRigidBody = GetComponent<Rigidbody2D>();
-        canMove = false;
+        canMove = true;
 
         EventManager.current.onEnableUserInput += EnableUserInput;
         shouldMoveIntoRoom = false;
@@ -45,7 +45,7 @@ public class DudeMovement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("HMMM I HIT SOMETHING? " + col.gameObject.name);
+        Debug.Log("Dude hit something: " + col.gameObject.name);
         if (col.gameObject.name.Contains("Room"))
         {
             Debug.Log("starting room sequence");
@@ -86,9 +86,9 @@ public class DudeMovement : MonoBehaviour {
     {
         shouldMoveIntoRoom = true;
         canMove = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.25f);
         EventManager.current.StartRoom(name);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         shouldMoveIntoRoom = false;
         canMove = true;
     }
